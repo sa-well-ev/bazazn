@@ -15,7 +15,12 @@ class BaseController extends Controller
 
     public function actionIndex()
     {
-        $data = Category::find()->With(['letterCat', 'letterCat.letter'])->where(['id'=>15])->one();
-        return $this->render('main', ['data' => $data]);
+        return $this->render('index');
+    }
+
+    public function actionLetter($id)
+    {
+        $data = Category::find()->With(['letterCat', 'letterCat.letter'])->where(['id'=>$id])->one();
+        return $this->render('letter', ['data' => $data]);
     }
 }

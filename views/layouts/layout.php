@@ -7,6 +7,7 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+$queryParam = Yii::$app->request->getQueryParam('id')
 ?>
 <?php $this->beginPage() ?>
 <!doctype html>
@@ -26,6 +27,18 @@ AppAsset::register($this);
     <?= Breadcrumbs::widget([
         'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
     ]) ?>
+    <h1><?= Html::encode($this->title) ?></h1>
+    <div class="row">
+        <div class="col-sm-3">
+
+        </div>
+        <div class="col-sm-9">
+            <a href="<?= \yii\helpers\Url::to(['base/letter', 'id' => $queryParam]) ?>">Письма</a>
+            <a href="<?= \yii\helpers\Url::to(['base/npa', 'id' => $queryParam]) ?>">НПА</a>
+            <a href="<?= \yii\helpers\Url::to(['base/fas', 'id' => $queryParam]) ?>">Решения ФАС</a>
+            <a href="<?= \yii\helpers\Url::to(['base/judgement', 'id' => $queryParam]) ?>">Судебные решения</a>
+        </div>
+    </div>
     <?= $content ?>
 </div>
 
