@@ -5,8 +5,8 @@
 use yii\helpers\Html;
 //use Yii;
 
-$this->title = $data->name;
-$this->params['breadcrumbs'][] = $this->title;
+//$this->title = $data->name;
+//$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 <?php foreach ($docArrChange as $docItem):?>

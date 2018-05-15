@@ -5,6 +5,7 @@
 
 namespace app\controllers;
 
+use app\models\TransformModelData;
 use yii\web\Controller;
 use app\models\Category;
 use app\models\Letter;
@@ -33,65 +34,7 @@ class BaseController extends Controller
                 $docArr[] = $doc->{$model};
             }
         };
-        $docArrChange = $this->{$funcName}($docArr);
+        $docArrChange = TransformModelData::{$funcName}($docArr);
         return $this->renderAjax('view', ['docArrChange' => $docArrChange]);
-    }
-
-    private function getnpa($docArr)
-    {
-        foreach ($docArr as $item) {
-            $fieldsArr = [];
-            $fieldsArr[] = $item['type'];
-            $fieldsArr[] = $item['source'];
-            $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
-            $fieldsArr[] = '№ ' . $item['doc_number'];
-            $fieldsArr[] = $item['revision_date'] ? '(ред. от ' . date_format(date_create($item['revision_date']), 'd.m.Y') . ')' : null;
-            $fieldsArr[] = '"'. $item['title'] . '"';
-            $fieldsArrAll[] = $fieldsArr;
-        }
-        return $fieldsArrAll;
-    }
-
-    private function getletter($docArr)
-    {
-        foreach ($docArr as $item) {
-            $fieldsArr = [];
-            $fieldsArr[] = $item['type'];
-            $fieldsArr[] = $item['source'];
-            $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
-            $fieldsArr[] = '№ ' . $item['doc_number'];
-            $fieldsArr[] = '"'. $item['title'] . '"';
-            $fieldsArrAll[] = $fieldsArr;
-        }
-        return $fieldsArrAll;
-    }
-
-    private function getfas($docArr)
-    {
-        $fieldsArrAll = [];
-        foreach ($docArr as $item) {
-            $fieldsArr = [];
-            $fieldsArr[] = $item['type'];
-            $fieldsArr[] = $item['source'];
-            $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
-            $fieldsArr[] = '№ ' . $item['doc_number'];
-            $fieldsArrAll[] = $fieldsArr;
-        }
-        return $fieldsArrAll;
-    }
-
-    private function getjudgement($docArr)
-    {
-        $fieldsArrAll = [];
-        foreach ($docArr as $item) {
-            $fieldsArr = [];
-            $fieldsArr[] = $item['type'];
-            $fieldsArr[] = $item['source'];
-            $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
-            $fieldsArr[] = $item['doc_number'] ? '№ ' . $item['doc_number'] : null;
-            $fieldsArr[] = $item['case_number'] ? 'по делу № ' . $item['case_number'] : null;
-            $fieldsArrAll[] = $fieldsArr;
-        }
-        return $fieldsArrAll;
     }
 }
