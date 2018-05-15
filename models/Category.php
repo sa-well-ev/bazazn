@@ -45,10 +45,31 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
-    * Связь с таблицей letter
+    * Связь с таблицей letterCat
     */
     public function getLetterCat()
     {
         return $this->hasMany(LetterCat::className(), ['category_id' => 'id']);
+    }
+    /**
+     * Связь с таблицей FasCat
+     */
+    public function getFasCat()
+    {
+        return $this->hasMany(FasCat::className(), ['category_id' => 'id']);
+    }
+    /**
+     * Связь с таблицей judgementCat
+     */
+    public function getJudgementCat()
+    {
+        return $this->hasMany(JudgementCat::className(), ['category_id' => 'id']);
+    }
+    /**
+     * Связь с таблицей Npa
+     */
+    public function getNpa()
+    {
+        return $this->hasMany(Npa::className(), ['category_id' => 'id']);
     }
 }
