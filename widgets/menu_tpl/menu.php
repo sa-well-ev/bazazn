@@ -1,10 +1,10 @@
 <li>
-    <a href="<?= \yii\helpers\Url::to(['base/' . $this->model, 'id' => $category['id']]) ?>">
+    <a href="#" class="menu-ajax" data-id="<?= $category['id']?>">
         <?= $category['name'] ?>
         <?php if (isset($category['childs'])):?>
-            <span class="badge pull-right">
+            <!--<span class="badge pull-right">
                 <i class="fa fa-plus"></i>
-            </span>
+            </span>-->
         <?php endif; ?>
     </a>
     <?php if (isset($category['childs'])):?>

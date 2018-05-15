@@ -5,6 +5,7 @@
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use app\widgets\MenuWidget;
 
 AppAsset::register($this);
 $queryParam = Yii::$app->request->getQueryParam('id')
@@ -30,16 +31,24 @@ $queryParam = Yii::$app->request->getQueryParam('id')
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="row">
         <div class="col-sm-3">
-
         </div>
         <div class="col-sm-9">
-            <a href="<?= \yii\helpers\Url::to(['base/letter', 'id' => $queryParam]) ?>">Письма</a>
-            <a href="<?= \yii\helpers\Url::to(['base/npa', 'id' => $queryParam]) ?>">НПА</a>
-            <a href="<?= \yii\helpers\Url::to(['base/fas', 'id' => $queryParam]) ?>">Решения ФАС</a>
-            <a href="<?= \yii\helpers\Url::to(['base/judgement', 'id' => $queryParam]) ?>">Судебные решения</a>
+            <a href="#" data-model="letter" class="href-ajax">Письма</a>
+            <a href="#" data-model="npa" class="href-ajax">НПА</a>
+            <a id="" href="#" data-model="fas" class="href-ajax">Решения ФАС</a>
+            <a href="#" data-model="judgement" class="href-ajax">Судебные решения</a>
         </div>
     </div>
-    <?= $content ?>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--Начало меню-->
+            <?= MenuWidget::widget(['tpl' => 'menu'])?>
+            <!--Конец меню-->
+        </div>
+        <div id="doc-list" class="col-sm-9">
+            <?= $content ?>
+        </div>
+    </div>
 </div>
 
 

@@ -34,7 +34,7 @@ class Fas extends \yii\db\ActiveRecord
         return [
             [['date_id', 'doc_date'], 'safe'],
             [['description'], 'string'],
-            [['case_number', 'type', 'sourсe', 'doc_number'], 'string', 'max' => 255],
+            [['case_number', 'type', 'source', 'doc_number'], 'string', 'max' => 255],
         ];
     }
 
@@ -48,7 +48,7 @@ class Fas extends \yii\db\ActiveRecord
             'date_id' => 'Date ID',
             'case_number' => 'Case Number',
             'type' => 'Type',
-            'sourсe' => 'Sourсe',
+            'source' => 'Source',
             'doc_number' => 'Doc Number',
             'doc_date' => 'Doc Date',
             'description' => 'Description',

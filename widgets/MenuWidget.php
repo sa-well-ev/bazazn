@@ -26,9 +26,6 @@ class MenuWidget extends Widget
             $this->tpl = 'menu';
         }
         $this->tpl .= '.php';
-        if ($this->model === null){
-            $this->model = 'letter';
-        }
     }
 
     public function run()
@@ -41,7 +38,7 @@ class MenuWidget extends Widget
         }*/
         $this->data = Category::find()->indexBy('id')->asArray()->all();
         $this->tree = $this->getTree();
-        $this->menuHtml = $this->getMenuHtml($this->tree);
+        $this->menuHtml = '<ul>' . $this->getMenuHtml($this->tree) . '</ul>';
 
         //Запишем меню в кэщ
         //Включаем кэширование только для шаблона меню
