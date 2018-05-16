@@ -1,10 +1,11 @@
+//Переменные который хранят выбранный id и модель
+var id = 1;
+var model = 'letter';
 //добавляем слушатель для меню
-
 $('.menu-ajax').on('click', function()
 {
     $('.menu-ajax').removeClass('ajax-selected');
-    var id = $(this).data('id'),
-    model = $('.ajax-selected').data('model');
+    id = $(this).data('id');
     $(this).addClass('ajax-selected');
     getData(id, model);
 });
@@ -12,8 +13,7 @@ $('.menu-ajax').on('click', function()
 $('.href-ajax').on('click', function()
 {
     $('.href-ajax').removeClass('ajax-selected');
-    var model = $(this).data('model'),
-        id = $('.ajax-selected').data('id');
+    model = $(this).data('model');
     $(this).addClass('ajax-selected');
     getData(id, model);
 });
