@@ -72,4 +72,26 @@ class TransformModelData extends Model
         }
         return $fieldsArrAll;
     }
+
+    /**
+     * Функция рекурсивно обрабатывающая меню категорий и возвращающая
+     * одномерный массив содержащий САМ объект категория и все её вложения
+     * @var $data - Это массив объектов - результат запроса
+     * @return $ChildArr - массив объектов содержащих категорию и все вложеные подкатегории
+     */
+    public static function getChildsCat($data)
+    {
+        $ChildArr = $data; //Это будет однородный массив первый элемент - сам массив объектов
+        foreach ($data as $dataItem){
+            if ($hasChild = $dataItem->child){
+                foreach ($hasChild as $child){
+                    if ($hasChilds = $child->child){
+                        $ChildArr = array_merge($ChildArr, self::getChildsCat($hasChilds));
+                    };
+                    $ChildArr[] = $child;
+                }
+            }
+        }
+        return $ChildArr;
+    }
 }

@@ -31,6 +31,9 @@ $queryParam = Yii::$app->request->getQueryParam('id')
     <h1><?= Html::encode($this->title) ?></h1>
     <div class="row">
         <div class="col-sm-3">
+            <label>
+                <input name="withChild" type="checkbox" checked> С вложенными
+            </label>
         </div>
         <div class="col-sm-9">
             <a href="#" data-model="letter" class="href-ajax">Письма</a>

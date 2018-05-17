@@ -20,10 +20,11 @@ $('.href-ajax').on('click', function()
 
 function getData(id, model)
 {
+    var withChild = ($(':checkbox[name="withChild"]').prop('checked'));
     $.ajax({
         url: '/base/view',
         type: 'GET',
-        data: {id: id, model: model},
+        data: {id: id, model: model, withChild: withChild},
         success: function (result) {
             if (!result) alert('Ответ пустой');
             $('#doc-list').html(result);

@@ -45,6 +45,14 @@ class Category extends \yii\db\ActiveRecord
     }
 
     /**
+     * Выборка дочерних категорий
+     */
+    public function getChild()
+    {
+        return $this->hasMany(Category::className(), ['parent_id' => 'id']);
+    }
+
+    /**
     * Связь с таблицей letterCat
     */
     public function getLetterCat()
