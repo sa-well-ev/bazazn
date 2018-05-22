@@ -3,6 +3,9 @@
 namespace app\models\user;
 
 use Yii;
+use yii\base\NotSupportedException;
+use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -12,7 +15,7 @@ use Yii;
  * @property string $password
  * @property string $auth_key
  */
-class UserRecord extends \yii\db\ActiveRecord
+class UserRecord extends ActiveRecord implements IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -46,14 +49,46 @@ class UserRecord extends \yii\db\ActiveRecord
         ];
     }
 
-    public function beforeSave()
+    public function beforeSave($insert)
     {
-        $return = parent::beforeSave();
+        $return = parent::beforeSave($insert);
 
         if ($this->isAttributeChanged('password')) {
             $this->password = Yii::$app->security->generatePasswordHash($this->password);
+            $this->auth_key = Yii::$app->security->generateRandomKey();
         }
 
         return $return;
     }
+
+    /*
+     * Превращаем класс в Identity интерфейс
+     * */
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public static function findIdentity($id)
+    {
+        return static::findOne($id);
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('Вы можете зарегистрироваться только по логину и паролю');
+    }
+
+
 }
