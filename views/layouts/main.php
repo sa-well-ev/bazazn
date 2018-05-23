@@ -42,10 +42,17 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                    '<li>'
+                . Html::beginForm(['/main/login'], 'post')
+                . Html::submitButton(
+                    'Login (' . 'Guest' . ')',
+                    ['class' => 'btn btn-link login']
+                )
+                . Html::endForm()
+                . '</li>'
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/main/logout'], 'post')
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
