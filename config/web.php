@@ -22,7 +22,7 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\user\models\UserRecord',
+            'identityClass' => 'app\models\user\UserRecord',
             'enableAutoLogin' => true,
             //Куда будет направлен пользователь если он не авторизован.
 //            'loginUrl' => 'site/index',
