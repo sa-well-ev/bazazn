@@ -90,5 +90,10 @@ class UserRecord extends ActiveRecord implements IdentityInterface
         throw new NotSupportedException('Вы можете зарегистрироваться только по логину и паролю');
     }
 
+    public static function findIdentityByName($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
+
 
 }
