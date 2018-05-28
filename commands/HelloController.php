@@ -9,6 +9,7 @@ namespace app\commands;
 
 use yii\console\Controller;
 use yii\console\ExitCode;
+use Yii;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -27,8 +28,23 @@ class HelloController extends Controller
      */
     public function actionIndex($message = 'hello world')
     {
-        echo $message . "\n";
+        echo $message = __DIR__;
+        echo "\n";
+        $obj = Yii::$app->getAuthManager()->getRoles();
+        shwV($obj);
 
+        return ExitCode::OK;
+    }
+
+    public function actionFile()
+    {
+        $data = file_get_contents('file.txt');
+//        echo $data;
+        $data = iconv("UTF-8", "Windows-1251", $data);
+//        $data = mb_convert_encoding($data, 'utf-8', 'Windows-1251');
+//        $data = mb_convert_encoding($data, 'CP1251', 'CP1252');
+//        file_put_contents('conv.txt', $data);
+        echo $data;
         return ExitCode::OK;
     }
 }
