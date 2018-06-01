@@ -46,7 +46,7 @@ AppAsset::register($this);
                 . Html::beginForm(['/main/login'], 'post')
                 . Html::submitButton(
                     'Login (' . 'Guest' . ')',
-                    ['class' => 'btn btn-link login']
+                    ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
                 . '</li>'
