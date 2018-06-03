@@ -1,6 +1,7 @@
 //Переменные который хранят выбранный id и модель
 var id = 1;
 var model = 'letter';
+
 //добавляем слушатель для меню
 $('.menu-ajax').on('click', function()
 {
@@ -9,6 +10,7 @@ $('.menu-ajax').on('click', function()
     $(this).addClass('ajax-selected');
     getData(id, model);
 });
+
 //добавляем слушатель для 4-ёх ссылок
 $('.href-ajax').on('click', function()
 {
@@ -16,6 +18,16 @@ $('.href-ajax').on('click', function()
     model = $(this).data('model');
     $(this).addClass('ajax-selected');
     getData(id, model);
+});
+
+//Добавляем аккордион к меню
+$('#accordion-menu').dcAccordion({
+    speed: 'fast',
+    autoClose: false,
+    showCount: true,
+    classCount: 'badge',
+    classArrow: 'glyphicon glyphicon-plus-sign',
+    classArrowExpand: 'glyphicon glyphicon-minus-sign'
 });
 
 function getData(id, model)

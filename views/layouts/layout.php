@@ -5,11 +5,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
+use app\assets\AccordionAsset;
 use app\widgets\MenuWidget;
 use yii\bootstrap\Nav;
 
-AppAsset::register($this);
+AccordionAsset::register($this);
 $queryParam = Yii::$app->request->getQueryParam('id');
 /*Чтобы не захламлять Nav виджет одними и теми же строками пакуем все параметры в массив*/
 $navParams = [];
@@ -54,9 +54,11 @@ $navParams = [];
         <h1><?= Html::encode($this->title) ?></h1>
         <div class="row">
             <div class="col-sm-3">
-                <label>
-                    <input name="withChild" type="checkbox" checked> С вложенными
-                </label>
+                <div class="checkbox">
+                    <label>
+                        <input name="withChild" type="checkbox" checked> С вложенными
+                    </label>
+                </div>
             </div>
             <div class="col-sm-9">
                 <?= Nav::widget([
@@ -72,7 +74,7 @@ $navParams = [];
                 <!--Конец меню-->
             </div>
             <div class="col-sm-9">
-               <div id="doc-list" class="card card-body">
+               <div id="doc-list" class="well well-sm">
                    <?= $content ?>
                </div>
             </div>

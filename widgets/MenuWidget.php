@@ -38,7 +38,10 @@ class MenuWidget extends Widget
         }*/
         $this->data = Category::find()->indexBy('id')->asArray()->all();
         $this->tree = $this->getTree();
-        $this->menuHtml = '<ul>' . $this->getMenuHtml($this->tree) . '</ul>';
+        /*Оборачивем вывод виджета в меню и устанавливаем
+         id для его индетификации(чтобы подключить аккордион)
+         и класс чтобы использовать оформление bootstrap*/
+        $this->menuHtml = '<ul class="list-group" id="accordion-menu">' . $this->getMenuHtml($this->tree) . '</ul>';
 
         //Запишем меню в кэщ
         //Включаем кэширование только для шаблона меню
