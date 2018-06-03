@@ -1,5 +1,5 @@
-<li class="list-group-item">
-    <a href="#" class="menu-ajax" data-id="<?= $category['id']?>">
+    <li class="list-group-item list-group-item-warning">
+    <a href="#" class="menu-ajax text-primary" data-id="<?= $category['id']?>">
         <?php if (isset($category['childs'])):?>
 <!--            <span class="glyphicon glyphicon-plus-sign"></span>-->
         <?php endif; ?>

@@ -51,9 +51,9 @@ $navParams = [];
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1 class="text-center bg-info"><?= Html::encode($this->title)?></h1>
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 text-center">
                 <div class="checkbox">
                     <label>
                         <input name="withChild" type="checkbox" checked> С вложенными
