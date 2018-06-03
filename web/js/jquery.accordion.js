@@ -11,17 +11,17 @@
 	$.fn.dcAccordion = function(options) {
 		//set default options 
 		var defaults = {
-			classParent	 : 'dcjq-parent',
+			classParent	 : 'dcjq-parent', //no sense because this class will be modified
 			classActive	 : 'active',
 			classArrow	 : 'dcjq-icon',
 			classArrowExpand : 'dcjq-icon-expand',
 			classCount	 : 'dcjq-count',
-			classExpand	 : 'dcjq-current-parent',
-			eventType	 : 'click',
-			hoverDelay	 : 300,
+			classExpand	 : 'dcjq-current-parent', // no sense because this class is not set automatically
+			eventType	 : 'click', //not work
+			hoverDelay	 : 300, // not work
 			menuClose    : true,
 			autoClose    : true,
-			autoExpand	 : false,
+			autoExpand	 : false, //not work, or this class needs to be set manually
 			speed        : 'slow',
 			saveState	 : true,
 			disableLink	 : true,
@@ -38,7 +38,7 @@
 			}
 			if(defaults.autoExpand == true){
 				$('li.'+defaults.classExpand+' > a').addClass(defaults.classActive);
-                $('li.'+defaults.classExpand+' > a > span.'+defaults.classArrow).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
+                $('li.'+defaults.classExpand+' > a > span:not(.'+defaults.classCount+')').removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
 			}
 			resetAccordion();
 			if(defaults.eventType == 'hover'){
@@ -84,12 +84,12 @@
 					if ($('> ul',$activeLi).is(':visible')){
 						$('ul',$activeLi).slideUp(defaults.speed);
 						$('a',$activeLi).removeClass(defaults.classActive);
-                        $('a > span.'+defaults.classArrow, $activeLi).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
+                        $('a > span:not(.'+defaults.classCount+')', $activeLi).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
 
 					} else {
 						$(this).siblings('ul').slideToggle(defaults.speed);
 						$('> a',$activeLi).addClass(defaults.classActive);
-                        $('a > span.'+defaults.classArrow, $activeLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
+                        $('> a > span:not(.'+defaults.classCount+')', $activeLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
 					}					
 					// Write cookie if save state is on
 					if(defaults.saveState == true){
@@ -135,11 +135,11 @@
 			if ($('> ul',$activeLi).is(':visible')){
 				$('ul',$activeLi).slideUp(defaults.speed);
 				$('a',$activeLi).removeClass(defaults.classActive);
-                $('a > span.'+defaults.classArrow, $activeLi).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
+                $('a > span:not(.'+defaults.classCount+')', $activeLi).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
 			} else {
 				$(this).siblings('ul').slideToggle(defaults.speed);
 				$('> a',$activeLi).addClass(defaults.classActive);
-                $('a > span.'+defaults.classArrow, $activeLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
+                $('> a > span:not(.'+defaults.classCount+')', $activeLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
 			}
 
 			// Write cookie if save state is on
@@ -160,7 +160,7 @@
 				$('ul',obj).slideUp(defaults.speed);
 				// Reset active links
 				$('a',obj).removeClass(defaults.classActive);
-                $('a > span.'+defaults.classArrow, obj).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
+                $('a > span:not(.'+defaults.classCount+')', obj).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
 				createCookie(defaults.cookie, obj);
 			}
 		}
@@ -170,9 +170,9 @@
 			$('ul',obj).not($parentsUl).slideUp(defaults.speed);
 			// Reset active links
 			$('a',obj).removeClass(defaults.classActive);
-            $('a > span.'+defaults.classArrow, obj).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
+            $('a > span:not(.'+defaults.classCount+')', obj).removeClass(defaults.classArrowExpand).addClass(defaults.classArrow);
 			$('> a',$parentsLi).addClass(defaults.classActive);
-            $('> a > span.'+defaults.classArrow, $parentsLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
+            $('> a > span:not(.'+defaults.classCount+')', $parentsLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
 		}
 		// Reset accordion using active links
 		function resetAccordion(){
@@ -191,10 +191,10 @@
 				$.each(activeArray, function(index,value){
 					var $cookieLi = $('li:eq('+value+')',obj);
 					$('> a',$cookieLi).addClass(defaults.classActive);
-                    $('> a > span.'+defaults.classArrow, $cookieLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
+                    $('> a > span:not(.'+defaults.classCount+')', $cookieLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
 					var $parentsLi = $cookieLi.parents('li');
 					$('> a',$parentsLi).addClass(defaults.classActive);
-                    $('> a > span.'+defaults.classArrow, $parentsLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
+                    $('> a > span:not(.'+defaults.classCount+')', $parentsLi).removeClass(defaults.classArrow).addClass(defaults.classArrowExpand);
 				});
 			}
 		}

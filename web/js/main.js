@@ -23,9 +23,9 @@ $('.href-ajax').on('click', function()
 //Добавляем аккордион к меню
 $('#accordion-menu').dcAccordion({
     speed: 'fast',
-    autoClose: false,
-    showCount: true,
-    classCount: 'badge',
+    // autoClose: false,
+    // showCount: true,
+    // classCount: 'badge',
     classArrow: 'glyphicon glyphicon-plus-sign',
     classArrowExpand: 'glyphicon glyphicon-minus-sign'
 });
