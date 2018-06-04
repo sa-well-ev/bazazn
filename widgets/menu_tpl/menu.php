@@ -1,4 +1,4 @@
-    <li class="list-group-item list-group-item-warning">
+    <li>
     <a href="#" class="menu-ajax text-primary" data-id="<?= $category['id']?>">
         <?php if (isset($category['childs'])):?>
 <!--            <span class="glyphicon glyphicon-plus-sign"></span>-->
@@ -6,7 +6,7 @@
         <?= $category['name'] ?>
     </a>
     <?php if (isset($category['childs'])):?>
-        <ul class="list-group">
+        <ul class="nav nav-pills nav-stacked">
             <?= $this->getMenuHtml($category['childs']); ?>
         </ul>
     <?php endif; ?>
