@@ -18,15 +18,16 @@ $i = 0;
         <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse<?= $i ?>" aria-expanded="false" aria-controls="collapse<?= $i ?>">
-                    Collapsible Group Item <?= $i ?>
+                    <?php foreach ($docItem as $docIndex => $docField): ?>
+                        <?php if ($docIndex == 'description') continue?>
+                        <?= $docField ?>
+                    <?php endforeach; ?>
                 </a>
             </h4>
         </div>
         <div id="collapse<?= $i ?>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<?= $i ?>">
             <div class="panel-body">
-                <?php foreach ($docItem as $docField): ?>
-                    <?= $docField ?>
-                <?php endforeach; ?>
+                <?= $docItem['description'] ?>
             </div>
         </div>
     </div>
