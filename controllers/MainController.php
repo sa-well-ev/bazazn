@@ -28,7 +28,7 @@ class MainController extends Controller
         if ($model->load(Yii::$app->request->post()) and $model->login())
             return $this->goBack();
 
-        return $this->render('login', ['model' => $model]);
+        //return $this->render('login', ['model' => $model]);
     }
 
     public function actionLogout()

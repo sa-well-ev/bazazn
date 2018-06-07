@@ -13,6 +13,10 @@ use yii\widgets\ActiveForm;
 use app\models\user\LoginForm;
 
 AppAsset::register($this);
+
+$modelform = new LoginForm();
+//Ошибка - отрисованная форма не содержит путь для обработки поэтому форма не срабатывает
+$loginFormHtml = $this->render('//main/loginrend', ['modelform' => $modelform])
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -45,15 +49,7 @@ AppAsset::register($this);
             Yii::$app->user->isGuest ? (
             [
                 'label' => 'Login (' . 'Guest' . ')',
-                'items' => [
-                   ['label' => 'Форма регистрации', 'url' => '#'],
-                   '<li class="divider"></li>',
-                    isset($this->blocks['blockLogin']) ? (
-                        $this->blocks['blockLogin']
-                    ) : (
-                            'Формы регистрации в виде нет'
-                    ),
-                ],
+                'items' => [ $loginFormHtml ],
             ]
             ) : (
                 '<li>'
