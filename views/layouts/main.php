@@ -9,8 +9,12 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\widgets\ActiveForm;
+use app\models\user\LoginForm;
 
 AppAsset::register($this);
+
+//$model = new LoginForm();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -35,6 +39,7 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+    $form = ActiveForm::begin(['id' => 'login-form']);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
@@ -42,26 +47,28 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                    '<li>'
-                . Html::beginForm(['/main/login'], 'post')
-                . Html::submitButton(
-                    'Login (' . 'Guest' . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+            [
+                'label' => 'Login (' . 'Guest' . ')',
+                'items' => [
+                      $form->field($model, 'username')->textInput()->render()
+                    . $form->field($model, 'password')->passwordInput()->render()
+                    . $form->field($model, 'rememberMe')->checkbox()->render()
+                    . Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button'])
+                ],
+            ]
             ) : (
                 '<li>'
                 . Html::beginForm(['/main/logout'], 'post')
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
+                    ['class' => 'btn btn-link']
                 )
                 . Html::endForm()
                 . '</li>'
             )
         ],
     ]);
+    ActiveForm::end();
     NavBar::end();
     ?>
 

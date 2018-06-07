@@ -26,9 +26,11 @@ AppAsset::register($this);
 <body>
 <?php $this->beginBody() ?>
 
+<!--Начало вида-->
 <div class="container">
     <?= $content ?>
 </div>
+<!--Конец вида-->
 
 <?php $this->endBody() ?>
 </body>
