@@ -13,8 +13,6 @@ use yii\widgets\ActiveForm;
 use app\models\user\LoginForm;
 
 AppAsset::register($this);
-
-//$model = new LoginForm();
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -29,7 +27,6 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -39,7 +36,6 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    $form = ActiveForm::begin(['id' => 'login-form']);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
@@ -50,10 +46,13 @@ AppAsset::register($this);
             [
                 'label' => 'Login (' . 'Guest' . ')',
                 'items' => [
-                      $form->field($model, 'username')->textInput()->render()
-                    . $form->field($model, 'password')->passwordInput()->render()
-                    . $form->field($model, 'rememberMe')->checkbox()->render()
-                    . Html::submitButton('Войти', ['class' => 'btn btn-primary', 'name' => 'login-button'])
+                   ['label' => 'Форма регистрации', 'url' => '#'],
+                   '<li class="divider"></li>',
+                    isset($this->blocks['blockLogin']) ? (
+                        $this->blocks['blockLogin']
+                    ) : (
+                            'Формы регистрации в виде нет'
+                    ),
                 ],
             ]
             ) : (
@@ -68,7 +67,6 @@ AppAsset::register($this);
             )
         ],
     ]);
-    ActiveForm::end();
     NavBar::end();
     ?>
 

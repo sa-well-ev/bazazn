@@ -16,14 +16,7 @@ class MainController extends Controller
 {
     public function actionIndex()
     {
-        $model = new LoginForm();
-        if (!Yii::$app->user->isGuest)
-            return $this->render('index', ['model' => $model]);
-
-        if ($model->load(Yii::$app->request->post()) and $model->login())
-            return $this->goBack();
-
-        return $this->render('index', ['model' => $model]);
+        return $this->render('index');
     }
 
     public function actionLogin()
