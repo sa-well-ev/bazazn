@@ -14,8 +14,9 @@ use app\models\user\LoginForm;
 
 AppAsset::register($this);
 
-$model = new LoginForm();
-//Ошибка - отрисованная форма не содержит путь для обработки поэтому форма не срабатывает
+//Если были ошибки на стороне сервера то забираем $model формы входа переданный нам из отрисовываемого вида
+isset($this->params['model']) ? $model = $this->params['model'] : $model = new LoginForm();
+//Захватываем HTML поток формы входа в переменную, чтобы вывести его в нужном месте
 $loginFormHtml = $this->render('//main/loginrend', ['model' => $model])
 ?>
 <?php $this->beginPage() ?>

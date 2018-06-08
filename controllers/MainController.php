@@ -24,12 +24,12 @@ class MainController extends Controller
         if (!Yii::$app->user->isGuest)
             return $this->goHome();
 
-        $model = new LoginForm();
+        $model = new LoginForm(); // TODO: Здесь использовать Yii::$app->view->params['test'] = 'готово';
         if ($model->load(Yii::$app->request->post()) and $model->login())
-            return $this->goBack();
+            return $this->goBack(); // TODO: Сделать перенаправление на маршрут base/index
 
-        //return $this->goHome();
-        return $this->render('index');
+        //Ошибки сервера при авторизации находятся в $modal поэтому для отрисовки их на форме входа нужно вернуть $modal в форму
+        return $this->render('index', ['model' => $model]); // TODO: Вместо этого можно использовать Yii::$app->view->params['test'] = 'готово'; и забирать в любом виде $this->params['test'];
     }
 
     public function actionLogout()

@@ -3,12 +3,13 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Это контроллер Main';
+//Для доступа к модели передаваемой в вид из шаблона передаём их в массив $params
+if (isset($model)) $this->params['model'] = $model;
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
         <h1>Мои поздравления!</h1>
-
         <p class="lead">Ты сделал страницу с которой будет начинать</p>
 
         <p><a class="btn btn-lg btn-success" href="#">Хороший пример использования кнопки</a></p>
