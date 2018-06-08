@@ -26,14 +26,15 @@ class MainController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) and $model->login())
-            return $this->goBack(); // TODO: Сделать перенаправление на маршрут base/index
+            return $this->redirect(['base/index']);
         /*Ошибки сервера при авторизации передаются в $modal поэтому для отрисовки их на форме входа нужно вернуть $modal
          * для передачи модели в шаблон добавляем её в $params, который доступен из любого вида.*/
-        Yii::$app->view->params['model'] = $model;
+        Yii::$app->view->params['model'] = &$model;
 
         /* TODO: Никак не получается перезагрузить именно ту странцу с которой вызвано меню,
          * return $this->goBack(); - очищает $model - ошибка не перехватывается*/
-        return $this->render('index');
+        return $this->goBack();
+        //return $this->render('index');
     }
 
     public function actionLogout()
