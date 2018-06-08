@@ -33,8 +33,7 @@ class MainController extends Controller
 
         /* TODO: Никак не получается перезагрузить именно ту странцу с которой вызвано меню,
          * return $this->goBack(); - очищает $model - ошибка не перехватывается*/
-        return $this->goBack();
-        //return $this->render('index');
+        return $this->render('index');
     }
 
     public function actionLogout()
