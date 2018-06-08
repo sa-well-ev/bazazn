@@ -17,7 +17,7 @@ AppAsset::register($this);
 //Если были ошибки на стороне сервера то забираем $model формы входа
 isset($this->params['model']) ? $model = $this->params['model'] : $model = new LoginForm();
 //Захватываем HTML поток формы входа в переменную, чтобы вывести его в нужном месте
-$loginFormHtml = $this->render('//main/loginrend', ['model' => $model])
+$loginFormHtml = $this->render('//main/login', ['model' => $model])
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
