@@ -3,8 +3,6 @@
 /* @var $this yii\web\View */
 
 $this->title = 'Это контроллер Main';
-//Для доступа к модели передаваемой в вид из шаблона передаём их в массив $params
-if (isset($model)) $this->params['model'] = $model;
 ?>
 <div class="site-index">
 
