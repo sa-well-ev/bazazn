@@ -18,7 +18,7 @@ class BaseController extends Controller
         return $this->render('index');
     }
 
-    public function actionView($id = 1, $model = 'letter', $withChild)
+    public function actionView($id = 1, $model = 'letter', $withChild = true)
     {
         $docArr = [];
         $funcName = 'get' . $model;
@@ -50,6 +50,7 @@ class BaseController extends Controller
         };
 
         $docArrChange = TransformModelData::{$funcName}($docArr);
+        /*Так как поле description нужно отдельно то его передаём тоже отдельно*/
         return $this->renderAjax('view', ['docArrChange' => $docArrChange]);
     }
 }

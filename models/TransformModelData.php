@@ -24,6 +24,8 @@ class TransformModelData extends Model
             $fieldsArr[] = '№ ' . $item['doc_number'];
             $fieldsArr[] = $item['revision_date'] ? '(ред. от ' . date_format(date_create($item['revision_date']), 'd.m.Y') . ')' : null;
             $fieldsArr[] = '"'. $item['title'] . '"';
+            /*Чтобы иметь возможность пропускать поле description в цикле и получать к нему доступ отдельно*/
+            $fieldsArr['description'] = $item['description'];
             $fieldsArrAll[] = $fieldsArr;
         }
         return $fieldsArrAll;
@@ -39,6 +41,8 @@ class TransformModelData extends Model
             $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
             $fieldsArr[] = '№ ' . $item['doc_number'];
             $fieldsArr[] = '"'. $item['title'] . '"';
+            /*Чтобы иметь возможность пропускать поле description в цикле и получать к нему доступ отдельно*/
+            $fieldsArr['description'] = $item['description'];
             $fieldsArrAll[] = $fieldsArr;
         }
         return $fieldsArrAll;
@@ -53,6 +57,8 @@ class TransformModelData extends Model
             $fieldsArr[] = $item['source'];
             $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
             $fieldsArr[] = '№ ' . $item['doc_number'];
+            /*Чтобы иметь возможность пропускать поле description в цикле и получать к нему доступ отдельно*/
+            $fieldsArr['description'] = $item['description'];
             $fieldsArrAll[] = $fieldsArr;
         }
         return $fieldsArrAll;
@@ -68,6 +74,8 @@ class TransformModelData extends Model
             $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
             $fieldsArr[] = $item['doc_number'] ? '№ ' . $item['doc_number'] : null;
             $fieldsArr[] = $item['case_number'] ? 'по делу № ' . $item['case_number'] : null;
+            /*Чтобы иметь возможность пропускать поле description в цикле и получать к нему доступ отдельно*/
+            $fieldsArr['description'] = $item['description'];
             $fieldsArrAll[] = $fieldsArr;
         }
         return $fieldsArrAll;
