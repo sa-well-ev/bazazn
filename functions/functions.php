@@ -23,7 +23,7 @@ function showVar($arr)
     echo '<pre>' . print_r($arr, true) . '</pre>';
 }
 
-function shwV($obj)
+function showV($obj)
 {
     echo '<pre>' . htmlspecialchars(getVarString($obj)) . '</pre>';
 }

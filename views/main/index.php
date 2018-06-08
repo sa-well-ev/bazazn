@@ -8,7 +8,6 @@ $this->title = 'Это контроллер Main';
 
     <div class="jumbotron">
         <h1>Мои поздравления!</h1>
-
         <p class="lead">Ты сделал страницу с которой будет начинать</p>
 
         <p><a class="btn btn-lg btn-success" href="#">Хороший пример использования кнопки</a></p>

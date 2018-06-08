@@ -25,7 +25,7 @@ $config = [
             'identityClass' => 'app\models\user\UserRecord',
             'enableAutoLogin' => true,
             //Куда будет направлен пользователь если он не авторизован.
-//            'loginUrl' => 'site/index',
+            'loginUrl' => 'main/index',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

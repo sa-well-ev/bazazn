@@ -10,7 +10,7 @@ use app\widgets\MenuWidget;
 use yii\bootstrap\Nav;
 
 AccordionAsset::register($this);
-$queryParam = Yii::$app->request->getQueryParam('id');
+//$queryParam = Yii::$app->request->getQueryParam('id');
 /*Чтобы не захламлять Nav виджет одними и теми же строками пакуем все параметры в массив*/
 $navParams = [];
     $navItem = [
@@ -34,23 +34,12 @@ $navParams = [];
         $navOneItem = [];
     };
 ?>
-<?php $this->beginPage() ?>
-    <!doctype html>
-    <html lang="ru-RU">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title><?= Html::encode($this->title) ?></title>
-        <?php $this->head() ?>
-    </head>
-    <body>
-    <?php $this->beginBody() ?>
+<?php $this->beginContent('@app/views/layouts/main.php'); ?>
+        <title><?= Html::encode($this->title); ?></title>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        ]); ?>
         <h1 class="text-center bg-info"><?= Html::encode($this->title)?></h1>
         <div class="row">
             <div class="col-sm-3 text-center">
@@ -64,13 +53,13 @@ $navParams = [];
                 <?= Nav::widget([
                     'items' => $navParams,
                     'options' => ['class' => 'nav nav-tabs nav-justified', 'role' => "tablist"],
-                ]) ?>
+                ]); ?>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-3">
                 <!--Начало меню-->
-                <?= MenuWidget::widget(['tpl' => 'menu']) ?>
+                <?= MenuWidget::widget(['tpl' => 'menu']); ?>
                 <!--Конец меню-->
             </div>
             <div class="col-sm-9">
@@ -80,7 +69,4 @@ $navParams = [];
             </div>
         </div>
     </div>
-    <?php $this->endBody() ?>
-    </body>
-    </html>
-<?php $this->endPage() ?>
+<?php $this->endContent(); ?>

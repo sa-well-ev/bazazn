@@ -9,8 +9,15 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\widgets\ActiveForm;
+use app\models\user\LoginForm;
 
 AppAsset::register($this);
+
+//Если были ошибки на стороне сервера то забираем $model формы входа
+isset($this->params['model']) ? $model = $this->params['model'] : $model = new LoginForm();
+//Захватываем HTML поток формы входа в переменную, чтобы вывести его в нужном месте
+$loginFormHtml = $this->render('//main/login', ['model' => $model])
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -25,7 +32,6 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
 <div class="wrap">
     <?php
     NavBar::begin([
@@ -42,20 +48,16 @@ AppAsset::register($this);
             ['label' => 'About', 'url' => ['/site/about']],
             ['label' => 'Contact', 'url' => ['/site/contact']],
             Yii::$app->user->isGuest ? (
-                    '<li>'
-                . Html::beginForm(['/main/login'], 'post')
-                . Html::submitButton(
-                    'Login (' . 'Guest' . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
+            [
+                'label' => 'Login (' . 'Guest' . ')',
+                'items' => [ $loginFormHtml ],
+            ]
             ) : (
                 '<li>'
                 . Html::beginForm(['/main/logout'], 'post')
                 . Html::submitButton(
                     'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
+                    ['class' => 'btn btn-link']
                 )
                 . Html::endForm()
                 . '</li>'

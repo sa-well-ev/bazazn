@@ -26,9 +26,12 @@ class MainController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) and $model->login())
-            return $this->goBack();
-
-        return $this->render('login', ['model' => $model]);
+            return $this->redirect(['base/index']);
+        /*Ошибки сервера при авторизации передаются в $modal поэтому для отрисовки их на форме входа нужно вернуть $modal
+         * для передачи модели в шаблон добавляем её в $params, который доступен из любого вида.*/
+        Yii::$app->view->params['model'] = $model;
+        //Странно что при использовании страница не переходит на вид index.
+        return $this->render('index');
     }
 
     public function actionLogout()
