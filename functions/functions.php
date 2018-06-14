@@ -6,7 +6,7 @@
  * подключения как класса по use
  */
 
-function getRusDateStr($date)
+function getRusDateStr($date) // TODO: Обойти эту функцию с помощью установки локали и функции strftime() (setlocale(LC_ALL, 'ru_RU.UTF-8'))
 {
     $rusMonths = array( 1 => 'января' , 'февраля' , 'марта' , 'апреля' , 'мая' , 'июня' , 'июля' , 'августа' , 'сентября' , 'октября' , 'ноября' , 'декабря' );
     return date_format($date,'j ' . $rusMonths[date_format($date, 'n')] . ' Y года');
