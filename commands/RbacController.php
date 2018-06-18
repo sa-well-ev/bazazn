@@ -29,7 +29,7 @@ class RbacController extends Controller
         return $return;
     }
 
-    // просто тестовый класс
+    // TODO: просто тестовый метод - удалить
     public function actionIndex()
     {
         echo 'Консоль работает'. "\n";

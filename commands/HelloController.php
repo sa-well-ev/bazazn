@@ -19,6 +19,8 @@ use Yii;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
+
+// TODO: Этот контроллер из шаблона по умолчанию - удалить
 class HelloController extends Controller
 {
     /**

@@ -8,6 +8,8 @@ use yii\base\Model;
 /**
  * ContactForm is the model behind the contact form.
  */
+
+// TODO: Этот модель из шаблона по умолчанию - удалить
 class ContactForm extends Model
 {
     public $name;

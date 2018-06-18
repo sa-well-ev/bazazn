@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models;
-
+// TODO: Этот модель из шаблона по умолчанию - удалить
 class User extends \yii\base\BaseObject implements \yii\web\IdentityInterface
 {
     public $id;

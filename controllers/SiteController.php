@@ -9,7 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
-
+// TODO: Этот контроллер из шаблона по умолчанию - удалить
 class SiteController extends Controller
 {
     /**

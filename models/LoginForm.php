@@ -11,6 +11,8 @@ use yii\base\Model;
  * @property User|null $user This property is read-only.
  *
  */
+
+// TODO: Этот модель из шаблона по умолчанию - удалить
 class LoginForm extends Model
 {
     public $username;

@@ -10,7 +10,9 @@ namespace app\models;
 
 
 use yii\base\Model;
-
+/**
+ * Класс для трансформации данных получаемых из БД для формированмя списка передающегося в ответ на AJAX запрос.
+*/
 class TransformModelData extends Model
 {
     public static function getnpa($docArr)
@@ -33,12 +35,14 @@ class TransformModelData extends Model
 
     public static function getletter($docArr)
     {
+        //setlocale(LC_ALL, 'ru_RU.UTF-8');
         $fieldsArrAll = [];
         foreach ($docArr as $item) {
             $fieldsArr = [];
             $fieldsArr[] = $item['type'];
             $fieldsArr[] = $item['source'];
             $fieldsArr[] = 'от ' . getRusDateStr(date_create($item['doc_date']));
+            //$fieldsArr[] = strftime('от %e %B %Y года');
             $fieldsArr[] = '№ ' . $item['doc_number'];
             $fieldsArr[] = '"'. $item['title'] . '"';
             /*Чтобы иметь возможность пропускать поле description в цикле и получать к нему доступ отдельно*/
@@ -83,7 +87,8 @@ class TransformModelData extends Model
 
     /**
      * Функция рекурсивно обрабатывающая меню категорий и возвращающая
-     * одномерный массив содержащий САМ объект категория и все её вложения
+     * одномерный массив содержащий САМ объект категория и все её вложения.
+     * Применяется для отображения документов не только в выбранной категории но и всех вложенных категорий
      * @var $data - Это массив объектов - результат запроса
      * @return $ChildArr - массив объектов содержащих категорию и все вложеные подкатегории
      */
