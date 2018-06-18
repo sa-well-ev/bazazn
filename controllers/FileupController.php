@@ -11,26 +11,31 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\models\file\FileUpload;
+use app\models\file\LetterFile;
 use yii\web\UploadedFile;
 
 class FileupController extends Controller
 {
     // Отключаем шаблон
-    public $layout = false;
+    //public $layout = false;
 
     public function actionIndex()
     {
-        $model = new FileUpload();
+        $model = new LetterFile();
 
         if (\Yii::$app->request->isPost){
             $model->fileUp = UploadedFile::getInstance($model, 'fileUp');
-            if ($model->upload()){
+            $model->upload(); //Загружаем атрибуты UploadedFile в атрибуты модели
+            if ($model->validate() && $model->save()){
                 //return $this->refresh(); //Перезагрузка формы - массив $_FILES - очищается
                 return $this->render('fileup', ['model' => $model]);
             }
         }
-
-
         return $this->render('fileup', ['model' => $model]);
+    }
+
+    public function actionTime()
+    {
+        return $this->render('datetime');
     }
 }
