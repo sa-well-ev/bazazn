@@ -21,3 +21,5 @@ ActiveForm::end();
 showV($model->fileUp);
 echo 'Oшибки </br>';
 showV($model->errors);
+echo 'Совпадения';
+if (isset($match)) showV($match);

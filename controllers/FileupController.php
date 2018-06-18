@@ -19,7 +19,7 @@ class FileupController extends Controller
     // Отключаем шаблон
     //public $layout = false;
 
-    public function actionIndex()
+    public function actionIndexOld() // Обращение к такому эшкшэну как /fileup/index-old
     {
         $model = new LetterFile();
 
@@ -30,6 +30,17 @@ class FileupController extends Controller
                 //return $this->refresh(); //Перезагрузка формы - массив $_FILES - очищается
                 return $this->render('fileup', ['model' => $model]);
             }
+        }
+        return $this->render('fileup', ['model' => $model]);
+    }
+
+    public function actionIndex()
+    {
+        $model = new FileUpload();
+        if (\Yii::$app->request->isPost) {
+            $model->fileUp = UploadedFile::getInstance($model, 'fileUp');
+            $match = $model->getDocAttr($model->fileUp->name);
+            return $this->render('fileup', ['model' => $model, 'match' => $match]);
         }
         return $this->render('fileup', ['model' => $model]);
     }
