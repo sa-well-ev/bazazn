@@ -11,6 +11,7 @@ namespace app\controllers;
 use app\models\user\LoginForm;
 use Yii;
 use yii\web\Controller;
+use app\models\test\TestDate;
 
 class MainController extends Controller
 {
@@ -38,5 +39,18 @@ class MainController extends Controller
     {
         Yii::$app->user->logout();
         return $this->goHome();
+    }
+
+    // TODO: функция ветки testData - удалить
+    public function actionDate()
+    {
+        $model = new TestDate();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            return $this->render('testdate', ['model' => $model]);
+        }
+
+        return $this->render('testdate', ['model' => $model]);
     }
 }
